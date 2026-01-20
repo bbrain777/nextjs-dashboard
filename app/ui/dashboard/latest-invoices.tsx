@@ -39,7 +39,8 @@ export default async function LatestInvoices() {
                   </div>
                 </div>
                 <p className="truncate text-sm font-medium md:text-base">
-                  {formatCurrency(invoice.amount)}
+                  {formatCurrency(Number(String(invoice.amount).replace(/,/g, '')) || 0)}
+
                 </p>
               </div>
             );
