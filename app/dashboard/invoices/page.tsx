@@ -1,11 +1,11 @@
 import Pagination from '@/app/ui/invoices/pagination';
 import Search from '@/app/ui/search';
 import Table from '@/app/ui/invoices/table';
-import { CreateInvoice } from '@/app/ui/invoices/buttons';
 import { lusitana } from '@/app/ui/fonts';
 import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 import { Suspense } from 'react';
 import { fetchInvoicesPages } from '@/app/lib/data';
+import Link from 'next/link';
 
 export default async function Page(props: {
   searchParams?: Promise<{
@@ -27,7 +27,14 @@ export default async function Page(props: {
 
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search invoices..." />
-        <CreateInvoice />
+
+        {/* ✅ Correct Create button */}
+        <Link
+          href="/dashboard/invoices/create"
+          className="flex h-10 items-center rounded-lg bg-blue-600 px-4 text-sm font-medium text-white transition-colors hover:bg-blue-500"
+        >
+          Create Invoice
+        </Link>
       </div>
 
       <Suspense key={query + currentPage} fallback={<InvoicesTableSkeleton />}>
